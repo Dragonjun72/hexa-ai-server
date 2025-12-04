@@ -2,19 +2,35 @@
 
 ## 아키텍처 개요
 
-핵사고날 아키텍처 (Hexagonal Architecture)
+핵사고날 아키텍처 (Hexagonal Architecture) - 4 레이어
 
 ```
 app/
 ├── consult/                    # 상담 도메인
+│   ├── domain/                 # 비즈니스 로직 (엔티티, 값 객체)
+│   ├── application/            # 유스케이스 레이어
+│   │   ├── port/              # 포트 인터페이스 (의존성 역전)
+│   │   └── use_case/          # 비즈니스 흐름 (유스케이스)
+│   ├── infrastructure/         # Secondary Adapter (Outbound)
+│   │   ├── repository/        # DB 구현체
+│   │   └── service/           # 외부 API 구현체 (OpenAI 등)
+│   └── adapter/               # Primary Adapter (Inbound)
+│       └── input/web/         # 웹 컨트롤러 (FastAPI)
+│           ├── request/       # 요청 DTO
+│           └── response/      # 응답 DTO
+├── converter/                  # 변환기 도메인 (동일 구조)
 │   ├── domain/
 │   ├── application/
+│   ├── infrastructure/
 │   └── adapter/
-├── converter/                  # 변환기 도메인
-│   ├── domain/
-│   ├── application/
-│   └── adapter/
-└── shared/                     # 공통 모듈 (MBTI, Gender)
+└── shared/                     # 공통 모듈 (MBTI, Gender, UserProfile)
+    └── domain/                # 공통 값 객체
+```
+
+**핵사고날 의존성 흐름**:
+```
+Adapter (Web) → Application (UseCase) → Domain ← Infrastructure (DB, API)
+   [Inbound]        [Port]              [Core]      [Outbound]
 ```
 
 ---
