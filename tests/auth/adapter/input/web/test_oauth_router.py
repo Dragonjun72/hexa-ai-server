@@ -14,7 +14,7 @@ from app.auth.application.use_case.oauth_callback_use_case import (
     OAuthCallbackResult,
     OAuthCallbackUseCase,
 )
-from app.auth.infrastructure.oauth.in_memory_oauth_provider import InMemoryOAuthProvider
+from tests.auth.fixtures.fake_oauth_provider import FakeOAuthProvider
 from unittest.mock import Mock
 
 
@@ -39,7 +39,7 @@ def setup_providers():
     _state_storage.clear()
 
     # Register test provider
-    test_provider = InMemoryOAuthProvider(
+    test_provider = FakeOAuthProvider(
         provider_name="google",
         users={
             "valid_code": OAuthUserInfo(

@@ -3,8 +3,8 @@ from urllib.parse import urlencode
 from app.auth.application.port.oauth_provider_port import OAuthProviderPort, OAuthUserInfo
 
 
-class InMemoryOAuthProvider(OAuthProviderPort):
-    """테스트용 In-Memory OAuth provider"""
+class FakeOAuthProvider(OAuthProviderPort):
+    """테스트용 Fake OAuth provider"""
 
     def __init__(
         self,

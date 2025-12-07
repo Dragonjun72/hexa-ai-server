@@ -1,7 +1,7 @@
 import pytest
 
-from app.auth.application.port.oauth_provider_port import OAuthProviderPort, OAuthUserInfo
-from app.auth.infrastructure.oauth.in_memory_oauth_provider import InMemoryOAuthProvider
+from app.auth.application.port.oauth_provider_port import OAuthUserInfo
+from tests.auth.fixtures.fake_oauth_provider import FakeOAuthProvider
 
 
 class TestOAuthProviderPort:
@@ -10,7 +10,7 @@ class TestOAuthProviderPort:
     def test_get_user_info_returns_oauth_user_info(self):
         """authorization code로 사용자 정보를 조회한다"""
         # Given: OAuth provider와 유효한 code
-        provider = InMemoryOAuthProvider(
+        provider = FakeOAuthProvider(
             provider_name="google",
             users={
                 "valid_code": OAuthUserInfo(
@@ -33,7 +33,7 @@ class TestOAuthProviderPort:
     def test_get_user_info_returns_none_for_invalid_code(self):
         """유효하지 않은 code면 None 반환"""
         # Given: OAuth provider
-        provider = InMemoryOAuthProvider(provider_name="google", users={})
+        provider = FakeOAuthProvider(provider_name="google", users={})
 
         # When: 유효하지 않은 code로 조회
         user_info = provider.get_user_info("invalid_code")
@@ -44,7 +44,7 @@ class TestOAuthProviderPort:
     def test_get_authorization_url_returns_valid_url(self):
         """OAuth 인증 URL을 반환한다"""
         # Given: OAuth provider
-        provider = InMemoryOAuthProvider(
+        provider = FakeOAuthProvider(
             provider_name="google",
             users={},
             auth_url="https://accounts.google.com/o/oauth2/auth",
