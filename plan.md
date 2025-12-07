@@ -32,7 +32,7 @@ app/
 │   └── adapter/
 │
 └── shared/                     # 공통 값 객체
-    └── domain/                # MBTI, Gender VO
+    └── vo/                    # MBTI, Gender VO
 ```
 
 **핵사고날 의존성 흐름**:

@@ -1,5 +1,5 @@
-from app.shared.domain.gender import Gender
-from app.shared.domain.mbti import MBTI
+from app.shared.vo.gender import Gender
+from app.shared.vo.mbti import MBTI
 
 
 class User:

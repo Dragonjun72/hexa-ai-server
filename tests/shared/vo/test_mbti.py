@@ -1,5 +1,5 @@
 import pytest
-from app.shared.domain.mbti import MBTI
+from app.shared.vo.mbti import MBTI
 
 
 def test_mbti_creates_from_valid_string():

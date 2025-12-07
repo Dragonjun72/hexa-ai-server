@@ -1,5 +1,5 @@
 import pytest
-from app.shared.domain.gender import Gender
+from app.shared.vo.gender import Gender
 
 
 def test_gender_creates_from_valid_string():
