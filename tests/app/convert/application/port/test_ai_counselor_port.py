@@ -1,6 +1,6 @@
 import pytest
-from app.consult.application.port.ai_counselor_port import AICounselorPort
-from app.consult.domain.analysis import Analysis
+from app.convert.application.port.ai_counselor_port import AICounselorPort
+from app.convert.domain.analysis import Analysis
 from app.shared.domain.user_profile import UserProfile
 from app.shared.domain.gender import Gender
 from app.shared.domain.mbti import MBTI

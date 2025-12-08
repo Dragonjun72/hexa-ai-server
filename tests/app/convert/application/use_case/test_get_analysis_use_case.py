@@ -1,11 +1,11 @@
 import pytest
 from typing import Optional
-from app.consult.application.use_case.get_analysis_use_case import GetAnalysisUseCase
-from app.consult.application.port.ai_counselor_port import AICounselorPort
-from app.consult.application.port.consult_repository_port import ConsultRepositoryPort
-from app.consult.domain.consult_session import ConsultSession
-from app.consult.domain.message import Message
-from app.consult.domain.analysis import Analysis
+from app.convert.application.use_case.get_analysis_use_case import GetAnalysisUseCase
+from app.convert.application.port.ai_counselor_port import AICounselorPort
+from app.convert.application.port.consult_repository_port import ConsultRepositoryPort
+from app.convert.domain.consult_session import ConsultSession
+from app.convert.domain.message import Message
+from app.convert.domain.analysis import Analysis
 from app.shared.domain.user_profile import UserProfile
 from app.shared.domain.gender import Gender
 from app.shared.domain.mbti import MBTI

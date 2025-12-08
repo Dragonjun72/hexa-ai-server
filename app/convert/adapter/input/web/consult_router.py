@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, status, Depends
 
-from app.consult.adapter.input.web.response.analysis_response import AnalysisResponse
-from app.consult.application.use_case.get_analysis_use_case import GetAnalysisUseCase
+from app.convert.adapter.input.web.response.analysis_response import AnalysisResponse
+from app.convert.application.use_case.get_analysis_use_case import GetAnalysisUseCase
 
 consult_router = APIRouter()
 

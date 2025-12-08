@@ -1,6 +1,6 @@
 import pytest
-from app.consult.domain.consult_session import ConsultSession
-from app.consult.domain.message import Message
+from app.convert.domain.consult_session import ConsultSession
+from app.convert.domain.message import Message
 from app.shared.domain.user_profile import UserProfile
 from app.shared.domain.gender import Gender
 from app.shared.domain.mbti import MBTI

@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from app.consult.domain.analysis import Analysis
+from app.convert.domain.analysis import Analysis
 from app.shared.domain.user_profile import UserProfile
 
 

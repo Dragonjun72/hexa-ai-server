@@ -1,5 +1,5 @@
 import uuid
-from app.consult.domain.message import Message
+from app.convert.domain.message import Message
 from app.shared.domain.user_profile import UserProfile
 
 

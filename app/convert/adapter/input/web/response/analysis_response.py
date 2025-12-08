@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-from app.consult.domain.analysis import Analysis
+from app.convert.domain.analysis import Analysis
 
 
 class AnalysisResponse(BaseModel):

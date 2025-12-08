@@ -1,5 +1,5 @@
 import pytest
-from app.consult.domain.analysis import Analysis
+from app.convert.domain.analysis import Analysis
 
 
 def test_analysis_creates_with_all_four_sections():

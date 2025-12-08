@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import Optional
 
-from app.consult.domain.consult_session import ConsultSession
+from app.convert.domain.consult_session import ConsultSession
 
 
 class ConsultRepositoryPort(ABC):

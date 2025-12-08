@@ -1,6 +1,6 @@
-from app.consult.application.port.consult_repository_port import ConsultRepositoryPort
-from app.consult.application.port.ai_counselor_port import AICounselorPort
-from app.consult.domain.analysis import Analysis
+from app.convert.application.port.consult_repository_port import ConsultRepositoryPort
+from app.convert.application.port.ai_counselor_port import AICounselorPort
+from app.convert.domain.analysis import Analysis
 
 
 class GetAnalysisUseCase:

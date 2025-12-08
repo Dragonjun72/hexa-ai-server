@@ -1,5 +1,5 @@
 import pytest
-from app.consult.domain.message import Message
+from app.convert.domain.message import Message
 
 
 def test_message_creates_with_role_and_content():
