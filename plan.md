@@ -143,7 +143,7 @@ client_id = settings.GOOGLE_CLIENT_ID
   - **API 확장**: 응답에 `greeting` 필드 추가
   - **✅ 인수 조건**: AI 인사말 포함, MBTI 특성 반영
 
-- [ ] `HAIS-13` [Consult] 메시지 전송 기본 **🔐 인증 필수**
+- [x] `HAIS-13` [Consult] 메시지 전송 기본 **🔐 인증 필수**
   - **📖 유저 스토리**: "로그인한 사용자로서, 질문을 보내고 AI의 답변을 받고 싶다"
   - **Domain 확장**: `Message` 도메인 (role, content, timestamp)
   - **Domain 확장**: `ConsultSession.add_message()`, `get_messages()`
