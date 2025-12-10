@@ -24,7 +24,11 @@ class Settings(BaseSettings):
     # Google OAuth Settings
     GOOGLE_CLIENT_ID: str
     GOOGLE_CLIENT_SECRET: str
-    GOOGLE_REDIRECT_URI: str
+
+    @property
+    def google_redirect_uri(self) -> str:
+        """Google OAuth 콜백 URI (BASE_URL에서 자동 생성)"""
+        return f"{self.BASE_URL}/auth/google/callback"
 
     class Config:
         env_file = ".env"

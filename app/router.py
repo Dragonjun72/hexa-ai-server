@@ -8,12 +8,12 @@ from fastapi import FastAPI
 from app.auth.adapter.input.web.google_oauth_router import google_oauth_router
 from app.data.adapter.input.web.data_router import data_router
 from app.data.infrastructure.orm.data_orm import DataORM  # noqa: F401
-from app.convert.infrastructure.orm.consult_orm import ConsultORM  # noqa: F401
-from app.convert.adapter.input.web.consult_router import consult_router
+from app.consult.adapter.input.web.consult_router import consult_router
 from app.consult.adapter.input.web import consult_router as consult_router_module
-from app.user.application.port.user_repository_port import UserRepositoryPort
+from app.converter.adapter.input.web.converter_router import converter_router
 from tests.user.fixtures.fake_user_repository import FakeUserRepository
 from tests.consult.fixtures.fake_consult_repository import FakeConsultRepository
+from tests.consult.fixtures.fake_ai_counselor import FakeAICounselor
 
 
 def setup_routers(app: FastAPI) -> None:
@@ -22,10 +22,13 @@ def setup_routers(app: FastAPI) -> None:
 
     # Data router
     app.include_router(data_router, prefix="/data")
-    app.include_router(consult_router, prefix="/convert")
+
+    # Converter router (HAIS-17, 18)
+    app.include_router(converter_router, prefix="/converter")
 
     # Consult router with dependency injection
     # TODO: Replace with real repository implementation
     consult_router_module._user_repository = FakeUserRepository()
     consult_router_module._consult_repository = FakeConsultRepository()
+    consult_router_module._ai_counselor = FakeAICounselor()
     app.include_router(consult_router, prefix="/consult")

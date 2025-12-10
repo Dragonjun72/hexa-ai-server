@@ -49,6 +49,10 @@ class AICounselorPort(ABC):
 
         Returns:
             AI 응답 메시지 스트림 (Iterator)
+        """
+        pass
+
+    @abstractmethod
     def generate_analysis(self, session: ConsultSession) -> Analysis:
         """
         상담 세션을 기반으로 MBTI 관계 분석을 생성한다.
