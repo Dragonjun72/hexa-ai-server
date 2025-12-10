@@ -332,6 +332,8 @@ def test_send_message_to_completed_session_returns_400(client, user_repo, sessio
     assert "상담이 완료되었습니다" in response.json()["detail"]
 
 
+def test_send_message_stream_returns_sse_events(client, user_repo, session_repo, consult_repo):
+    """메시지 전송 시 SSE 스트리밍으로 AI 응답을 받을 수 있다"""
 def test_send_message_returns_analysis_on_5th_turn(client, user_repo, session_repo, consult_repo):
     """5턴째 메시지 전송 시 분석 결과를 반환한다"""
     from app.consult.domain.message import Message
@@ -349,6 +351,7 @@ def test_send_message_returns_analysis_on_5th_turn(client, user_repo, session_re
     auth_session = Session(session_id="valid-session-123", user_id="user-123")
     session_repo.save(auth_session)
 
+    # Given: 상담 세션
     # Given: 4턴 진행된 상담 세션
     consult_session = ConsultSession(
         id="consult-session-123",
@@ -356,6 +359,22 @@ def test_send_message_returns_analysis_on_5th_turn(client, user_repo, session_re
         mbti=MBTI("INTJ"),
         gender=Gender("MALE")
     )
+    consult_repo.save(consult_session)
+
+    # When: 스트리밍 API를 호출하면
+    response = client.post(
+        "/consult/consult-session-123/message/stream",
+        headers={"Authorization": "Bearer valid-session-123"},
+        json={"content": "안녕하세요"}
+    )
+
+    # Then: SSE 응답을 반환한다
+    assert response.status_code == 200
+    assert response.headers["content-type"] == "text/event-stream; charset=utf-8"
+
+    # SSE 형식 검증
+    content = response.text
+    assert "data:" in content
     for i in range(4):
         consult_session.add_message(Message(role="user", content=f"질문 {i+1}"))
         consult_session.add_message(Message(role="assistant", content=f"답변 {i+1}"))

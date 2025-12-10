@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from typing import Iterator
 
 from app.shared.vo.mbti import MBTI
 from app.shared.vo.gender import Gender
@@ -38,6 +39,16 @@ class AICounselorPort(ABC):
         pass
 
     @abstractmethod
+    def generate_response_stream(self, session: ConsultSession, user_message: str) -> Iterator[str]:
+        """
+        사용자 메시지에 대한 AI 응답을 스트리밍 방식으로 생성한다.
+
+        Args:
+            session: 상담 세션 (MBTI, Gender, 대화 히스토리 포함)
+            user_message: 사용자가 보낸 메시지
+
+        Returns:
+            AI 응답 메시지 스트림 (Iterator)
     def generate_analysis(self, session: ConsultSession) -> Analysis:
         """
         상담 세션을 기반으로 MBTI 관계 분석을 생성한다.
