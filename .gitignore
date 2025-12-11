@@ -2,3 +2,4 @@
 /.code/
 /.env
 /.venv/
+docker-compose.yml
